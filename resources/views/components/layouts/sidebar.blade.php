@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#staff">
+                    <a class="nav-link text-white" href="{{ route('user') }}">
                         <span data-feather="user"></span>
                         Manage Staff
                     </a>
