@@ -3,6 +3,7 @@
 use App\Livewire\BukuComponent;
 use App\Livewire\HomeComponent;
 use App\Livewire\KategoriComponent;
+use App\Livewire\KembaliComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\MemberComponent;
 use App\Livewire\PinjamComponent;
@@ -16,5 +17,6 @@ Route::get('/member', MemberComponent::class)->middleware('auth')->name('member'
 Route::get('/kategori', KategoriComponent::class)->middleware('auth')->name('kategori');
 Route::get('/buku', BukuComponent::class)->middleware('auth')->name('buku');
 Route::get('/pinjam', PinjamComponent::class)->middleware('auth')->name('pinjam');
+Route::get('/kembali', KembaliComponent::class)->middleware('auth')->name('kembali');
 Route::get('/login', LoginComponent::class)->name('login');
 Route::get('/logout', [LoginComponent::class, 'keluar'])->name('logout');

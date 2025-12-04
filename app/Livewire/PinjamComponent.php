@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Buku;
 use App\Models\Pinjam;
 use App\Models\User;
-use Date;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -13,28 +12,40 @@ use Livewire\WithPagination;
 class PinjamComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
+
     protected $paginationTheme = 'bootstrap';
     public $cari, $id, $user, $buku, $tgl_pinjam, $tgl_kembali;
+
     public function render()
     {
+        $pinjamQuery = Pinjam::query();
+
         if ($this->cari) {
-            $data['member'] = User::Where('nama', 'like', '%' . $this->cari . '%')
-                ->orWhere('email', 'like', '%' . $this->cari . '%')
-                ->get();
-            $data['buku'] = Buku::Where('judul', 'like', '%' . $this->cari . '%')
-                ->orWhere('penulis', 'like', '%' . $this->cari . '%')
-                ->orWhere('penerbit', 'like', '%' . $this->cari . '%')
-                ->orWhere('tahun', 'like', '%' . $this->cari . '%')
-                ->orWhere('isbn', 'like', '%' . $this->cari . '%')
-                ->get();
-            $data['pinjam'] = Pinjam::Where('tanggal_pinjam', 'like', '%' . $this->cari . '%')
-                ->orWhere('tanggal_kembali', 'like', '%' . $this->cari . '%')
-                ->paginate(10);
+            $pinjamQuery->where(function ($q) {
+                $term = '%' . $this->cari . '%';
+
+                // 1. Cari berdasarkan Tanggal (di tabel pinjam sendiri)
+                $q->where('tgl_pinjam', 'like', $term)
+                    ->orWhere('tgl_kembali', 'like', $term)
+
+                    // 2. Cari berdasarkan Nama Member (Relasi 'user')
+                    ->orWhereHas('user', function ($subQuery) use ($term) {
+                        $subQuery->where('nama', 'like', $term);
+                    })
+
+                    // 3. Cari berdasarkan Judul Buku (Relasi 'buku')
+                    ->orWhereHas('buku', function ($subQuery) use ($term) {
+                        $subQuery->where('judul', 'like', $term);
+                    });
+            });
         }
+
         $data['member'] = User::where('jenis', 'member')->get();
         $data['book'] = Buku::all();
-        $data['pinjam'] = Pinjam::paginate(10);
-        $layout['title'] = 'Pinajam Buku';
+        // Gunakan query yang sudah difilter
+        $data['pinjam'] = $pinjamQuery->latest()->paginate(10);
+
+        $layout['title'] = 'Pinjam Buku';
         return view('livewire.pinjam-component', $data)->layoutData($layout);
     }
 
@@ -47,16 +58,21 @@ class PinjamComponent extends Component
             'user.required' => 'Member tidak boleh kosong',
             'buku.required' => 'Buku tidak boleh kosong',
         ]);
-        $this-> tgl_pinjam = date('Y-m-d');
-        $this-> tgl_kembali = date('Y-m-d', strtotime($this-> tgl_pinjam . ' + 7 days'));
+
+        // Logic Tanggal Otomatis
+        $this->tgl_pinjam = date('Y-m-d');
+        $this->tgl_kembali = date('Y-m-d', strtotime('+7 days'));
+
         Pinjam::create([
             'user_id' => $this->user,
             'buku_id' => $this->buku,
-            'tanggal_pinjam' => $this-> tgl_pinjam,
-            'tanggal_kembali' => $this-> tgl_kembali,
+            // PERBAIKAN DISINI: Gunakan 'tgl_' bukan 'tanggal_'
+            'tgl_pinjam' => $this->tgl_pinjam,
+            'tgl_kembali' => $this->tgl_kembali,
             'status' => 'pinjam',
         ]);
-        $this ->reset();
+
+        $this->reset();
         session()->flash('success', 'Pinjam berhasil ditambahkan');
         return redirect()->route('pinjam');
     }
@@ -67,20 +83,24 @@ class PinjamComponent extends Component
         $this->id = $pinjam->id;
         $this->user = $pinjam->user_id;
         $this->buku = $pinjam->buku_id;
-        $this-> tgl_pinjam = $pinjam->tanggal_pinjam;
-        $this-> tgl_kembali = $pinjam->tanggal_kembali;
+        // PERBAIKAN: Ambil dari kolom yang benar
+        $this->tgl_pinjam = $pinjam->tgl_pinjam;
+        $this->tgl_kembali = $pinjam->tgl_kembali;
     }
 
     public function update()
     {
         $pinjam = Pinjam::find($this->id);
+
         $pinjam->update([
             'user_id' => $this->user,
             'buku_id' => $this->buku,
-            'tanggal_pinjam' => $this-> tgl_pinjam,
-            'tanggal_kembali' => $this-> tgl_kembali,
+            // PERBAIKAN DISINI JUGA
+            'tgl_pinjam' => $this->tgl_pinjam,
+            'tgl_kembali' => $this->tgl_kembali,
             'status' => 'pinjam',
         ]);
+
         $this->reset();
         session()->flash('success', 'Pinjam berhasil diubah');
         return redirect()->route('pinjam');
@@ -94,9 +114,11 @@ class PinjamComponent extends Component
     public function destroy()
     {
         $pinjam = Pinjam::find($this->id);
-        $pinjam->delete();
+        if ($pinjam) {
+            $pinjam->delete();
+            session()->flash('success', 'Pinjam berhasil dihapus');
+        }
         $this->reset();
-        session()->flash('success', 'Pinjam berhasil dihapus');
         return redirect()->route('pinjam');
     }
 }

@@ -45,7 +45,7 @@
                 </table>
                 {{ $pinjam->links() }}
             </div>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage"> Tambah Member </a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage"> Tambah Peminjam </a>
         </div>
     </div>
     {{-- Tambah --}}

@@ -3,7 +3,7 @@
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" href="#dashboard">
+                    <a class="nav-link active text-white" href="{{ route('home') }}">
                         <span data-feather="home"></span>
                         Dashboard
                     </a>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#returns">
+                    <a class="nav-link text-white" href="{{ route('kembali') }}">
                         <span data-feather="check-circle"></span>
                         Manage Returns
                     </a>
