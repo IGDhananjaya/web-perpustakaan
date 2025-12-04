@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#loans">
+                    <a class="nav-link text-white" href="{{ route('pinjam') }}">
                         <span data-feather="file"></span>
                         Manage Loans
                     </a>
