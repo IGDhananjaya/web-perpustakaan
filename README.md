@@ -123,8 +123,8 @@ Before running this project, ensure you have the following installed:
 
 ## 👥 Author
 **I Gede Dhananjaya**
-* **Institution:** Universitas Pendidikan Ganesha
-* **Role:** Full Stack Developer
+**Institution:** Universitas Pendidikan Ganesha
+
 
 ## 📄 License
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
