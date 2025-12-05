@@ -64,7 +64,7 @@ Before running this project, ensure you have the following installed:
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/yourusername/library-dashboard.git](https://github.com/yourusername/library-dashboard.git)
+    git clone https://github.com/IGDhananjaya/web-perpustakaan.git
     cd library-dashboard
     ```
 
