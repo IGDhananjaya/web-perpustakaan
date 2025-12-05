@@ -122,8 +122,8 @@ Before running this project, ensure you have the following installed:
 | <img src="ImageGithub/Return.jpeg" width="400" alt="Borrowing"> | <img src="ImageGithub/Member.jpeg" width="400" alt="Members"> |
 
 ## 👥 Author
-**I Gede Dhananjaya**
-**Institution:** Universitas Pendidikan Ganesha
+* **I Gede Dhananjaya**
+* **Institution:** Universitas Pendidikan Ganesha
 
 
 ## 📄 License
