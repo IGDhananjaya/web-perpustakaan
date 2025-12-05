@@ -112,7 +112,6 @@ Before running this project, ensure you have the following installed:
     Access the app at `http://127.0.0.1:8000`
 
 ## 📸 Screenshots
-*(Please upload your screenshots to an 'images' folder and update paths below)*
 
 | Login | Dashboard |
 | :---: | :---: |
