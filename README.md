@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Library Management Dashboard (Sistem Informasi Perpustakaan)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)
+![Livewire](https://img.shields.io/badge/Livewire-4E5D94?style=flat&logo=livewire&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=flat&logo=bootstrap&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=flat&logo=mysql&logoColor=white)
 
-## About Laravel
+A modern, responsive **Library Management Dashboard** built to streamline library operations. This application allows efficient management of books, members, admins, and circulation processes (borrowing and returning) with a dynamic user interface powered by **Livewire** and **Bootstrap**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 Table of Contents
+- [About the Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Screenshots](#-screenshots)
+- [License](#-license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ℹ️ About the Project
+This project is designed to help librarians or administrators manage library resources effectively. By using **Laravel Livewire**, the application offers a "Single Page Application" (SPA) feel without the complexity of a separate frontend framework, ensuring fast interactions like real-time searching and dynamic form validation.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🌟 Key Features
 
-## Learning Laravel
+### 📚 Master Data Management
+* **Book Management (Data Buku):**
+    * CRUD (Create, Read, Update, Delete) operations for books.
+    * Manage details like Title, ISBN, Author, Publisher, Stock, and Category.
+    * Real-time search and filtering.
+* **Member Management (Data Member):**
+    * Register and manage library members/students.
+    * View member borrowing history.
+* **Admin Management:**
+    * Manage system administrators and staff access.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 🔄 Circulation (Sirkulasi)
+* **Borrowing (Peminjaman):**
+    * Record new loans with due dates.
+    * Automatic stock reduction when a book is borrowed.
+    * Validation to prevent members from borrowing beyond limits.
+* **Returning (Pengembalian):**
+    * Process book returns.
+    * Automatic fine calculation (Denda) for late returns (optional feature).
+    * Update book stock status automatically.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📊 Dashboard & Reports
+* **Real-time Stats:** View total books, active members, and ongoing loans at a glance.
+* **Transaction History:** Logs of all borrowing and returning activities.
 
-## Laravel Sponsors
+## 🛠 Tech Stack
+* **Framework:** [Laravel 12](https://laravel.com)
+* **Full-Stack Framework:** [Livewire 3.7](https://livewire.laravel.com) (for dynamic components)
+* **Styling:** [Bootstrap 4.5](https://getbootstrap.com)
+* **Database:** MySQL
+* **Icons:** Bootstrap Icons / FontAwesome
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 💻 Requirements
+Before running this project, ensure you have the following installed:
+* PHP >= 8.1
+* Composer
+* MySQL / MariaDB
+* Node.js & NPM (for compiling assets)
 
-### Premium Partners
+## 🚀 Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/yourusername/library-dashboard.git](https://github.com/yourusername/library-dashboard.git)
+    cd library-dashboard
+    ```
 
-## Contributing
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3.  **Environment Setup**
+    Copy the `.env` file and configure your database credentials:
+    ```bash
+    cp .env.example .env
+    ```
+    Open `.env` and set your DB details:
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=library_db
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
-## Code of Conduct
+4.  **Generate App Key**
+    ```bash
+    php artisan key:generate
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5.  **Run Migrations & Seeders**
+    Create tables and insert dummy data (admin accounts, sample books):
+    ```bash
+    php artisan migrate --seed
+    ```
 
-## Security Vulnerabilities
+6.  **Build Assets**
+    ```bash
+    npm run build
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7.  **Run the Server**
+    ```bash
+    php artisan serve
+    ```
+    Access the app at `http://127.0.0.1:8000`
 
-## License
+## 📸 Screenshots
+*(Please upload your screenshots to an 'images' folder and update paths below)*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Dashboard | Book List |
+| :---: | :---: |
+| <img src="images/dashboard.png" width="400" alt="Dashboard"> | <img src="images/book-list.png" width="400" alt="Book List"> |
+
+| Borrowing Form | Member List |
+| :---: | :---: |
+| <img src="images/borrowing.png" width="400" alt="Borrowing"> | <img src="images/members.png" width="400" alt="Members"> |
+
+## 👥 Author
+**I Gede Dhananjaya**
+* **Institution:** Universitas Pendidikan Ganesha
+* **Role:** Full Stack Developer
+
+## 📄 License
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
