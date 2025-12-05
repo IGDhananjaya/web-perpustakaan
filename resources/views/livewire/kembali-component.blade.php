@@ -79,14 +79,14 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->pinjam_id }}</td>
                                 <td>{{ $data->tgl_kembali }}</td>
-                                <td>{{ $data->Denda }}</td>
+
+                                <td>Rp. {{ number_format($data->denda, 0, ',', '.') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 {{ $pengembalian->links() }}
             </div>
-            {{-- <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage"> Tambah Member </a> --}}
         </div>
     </div>
 
