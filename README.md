@@ -114,13 +114,13 @@ Before running this project, ensure you have the following installed:
 ## 📸 Screenshots
 *(Please upload your screenshots to an 'images' folder and update paths below)*
 
-| Dashboard | Book List |
+| Login | Dashboard |
 | :---: | :---: |
-| <img src="images/dashboard.png" width="400" alt="Dashboard"> | <img src="images/book-list.png" width="400" alt="Book List"> |
+| <img src="ImageGithub/Login.jpeg" width="400" alt="Login"> | <img src="ImageGithub/Dashboard.jpeg" width="400" alt="Dashboard"> |
 
-| Borrowing Form | Member List |
+| Return Form | Member List |
 | :---: | :---: |
-| <img src="images/borrowing.png" width="400" alt="Borrowing"> | <img src="images/members.png" width="400" alt="Members"> |
+| <img src="ImageGithub/Return.jpeg" width="400" alt="Borrowing"> | <img src="ImageGithub/Member.jpeg" width="400" alt="Members"> |
 
 ## 👥 Author
 **I Gede Dhananjaya**
